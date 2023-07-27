@@ -31,7 +31,7 @@ module.exports = {
            const {password, __v, createdAt, ...others} = user._doc;
            
            try {
-            const userToken = jwt.sign({ id: user._id }, process.env.SECRET, { expiresIn: "1h" });
+            const userToken = jwt.sign({ id: user._id }, process.env.SECRET,);
             res.status(201).json({ userToken, ...others });
           } catch (err) {
             console.error(err);
