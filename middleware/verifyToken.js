@@ -8,12 +8,12 @@ const verifyToken = (req,res,next) => {
     if(authHeader){
       
         const token = authHeader.split(" ")[1];
-        jwt.verify(token, process.env.JWT_SEC, async (err,user)=>{
+        jwt.verify(token, process.env.SECRET, async (err,Decoded)=>{
             if(err)  res.status(403).json('Invalid token')
 
-            req.user = user;
+            req.user = await User.findById(Decoded.id);
 
-            console.log(user)
+            console.log(Decoded.id)
 
             next();
        })

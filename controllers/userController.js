@@ -9,13 +9,13 @@ module.exports = {
     }
 
     try{
-        const UpdateUser = await User.findByIdAndUpdate(
+        const updateUser = await User.findByIdAndUpdate(
             req.params.id,{
                 $set: req.body
             },{new:true}
         );
 
-        const {password,__v,createdAt,...others} = this.updateUser._doc;
+        const {password,__v,createdAt,...others} = updateUser._doc;
 
         res.status(200).json({others});
     }catch(error){
